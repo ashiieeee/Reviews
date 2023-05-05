@@ -38,3 +38,14 @@ review2 = ['The app is really good']
 vec = vector.transform(review2).toarray()
 
 s.predict(vec)[0]
+
+# Define the Streamlit app
+import streamlit as st
+st.header('Demo')
+input_text = st.text_area("Please enter the text", value="")
+if st.button("Check"):
+    input_text_transformed = vector.transform([input_text]).toarray()
+    prediction = naivebayes.predict(input_text_transformed)[0]
+    prediction_mapping = {0: "positive", 1: 'Negative'}
+    result = prediction_mapping[prediction]
+    st.write(f"Predicted category: {result}")
